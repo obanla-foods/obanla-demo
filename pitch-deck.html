@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obanla Foods - Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .slides-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100vh;
+            display: none;
+            padding: 60px 80px;
+            position: relative;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #ffd700;
+        }
+        
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .feature-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .feature-title {
+            font-size: 1.4em;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+        
+        li {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+        
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            background: #ffd700;
+            color: #1a1a1a;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #ffed4e;
+            transform: scale(1.05);
+        }
+        
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255, 215, 0, 0.3);
+        }
+        
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 22%;
+            text-align: center;
+            position: relative;
+            border: 2px solid #ffd700;
+        }
+        
+        .year {
+            font-size: 1.5em;
+            color: #ffd700;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .problem-box, .solution-box {
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        .problem-box {
+            background: rgba(255, 100, 100, 0.2);
+            border: 2px solid rgba(255, 100, 100, 0.5);
+        }
+        
+        .solution-box {
+            background: rgba(100, 255, 100, 0.2);
+            border: 2px solid rgba(100, 255, 100, 0.5);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .team-photo {
+            background: rgba(255, 215, 0, 0.2);
+            border: 3px solid #ffd700;
+            border-radius: 15px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+        }
+        
+        .financial-table {
+            margin-top: 30px;
+            width: 100%;
+        }
+        
+        .financial-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .financial-table th, .financial-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .financial-table th {
+            background: rgba(255, 215, 0, 0.3);
+            font-size: 1.2em;
+        }
+        
+        .financial-table td {
+            font-size: 1.1em;
+        }
+        
+        .slide1 { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        .slide2 { background: linear-gradient(135deg, #134e5e 0%, #71b280 100%); }
+        .slide3 { background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%); }
+        .slide4 { background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%); }
+        .slide5 { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
+        .slide6 { background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%); }
+        .slide7 { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        .slide8 { background: linear-gradient(135deg, #134e5e 0%, #71b280 100%); }
+        .slide9 { background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%); }
+        .slide10 { background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%); }
+        .slide11 { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
+        .slide12 { background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%); }
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active slide1">
+            <h1>🌍 OBANLA FOODS</h1>
+            <p class="subtitle">Revolutionizing African Food Through Blockchain, Smart Packaging & Digital Innovation</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Innovator Founder Visa Application</p>
+            <p style="font-size: 1.1em; opacity: 0.8;">Oluwatosin Grace Omoniyi | December 2024</p>
+            <div class="slide-number">1 / 12</div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide slide2">
+            <h2>The Problem</h2>
+            <div class="problem-solution">
+                <div class="problem-box">
+                    <h3 style="color: #ff6666;">Current Challenges</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>❌ Zero supply chain transparency</li>
+                        <li>❌ No way to verify product origin</li>
+                        <li>❌ Quality inconsistencies & spoilage</li>
+                        <li>❌ 4-5 middlemen increasing costs</li>
+                        <li>❌ Farmers receive only 30% of retail price</li>
+                        <li>❌ Poor packaging = short shelf life</li>
+                    </ul>
+                </div>
+                <div class="solution-box">
+                    <h3 style="color: #66ff66;">Market Opportunity</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>✅ £5+ billion UK ethnic food market</li>
+                        <li>✅ 2+ million African diaspora consumers</li>
+                        <li>✅ Growing 7-10% annually</li>
+                        <li>✅ No tech-enabled competitors</li>
+                        <li>✅ Increasing demand for transparency</li>
+                        <li>✅ Mainstream retail opportunity</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">2 / 12</div>
+        </div>
+
+        <!-- Slide 3: Our Solution -->
+        <div class="slide slide3">
+            <h2>Our Solution: 3 Interconnected Innovations</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-title">🔗 OBANLA TRACE</div>
+                    <p>Blockchain-enabled QR traceability system</p>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li>Farm-to-shelf transparency</li>
+                        <li>Immutable quality data</li>
+                        <li>Lab test verification</li>
+                        <li>Anti-counterfeit protection</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">📦 Smart Packaging</div>
+                    <p>Product-specific advanced packaging</p>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li>Odour-lock for beans flour</li>
+                        <li>Moisture control for yam flour</li>
+                        <li>200%+ shelf life extension</li>
+                        <li>Premium retail standards</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">🌐 B2B Marketplace</div>
+                    <p>Digital platform connecting farms to buyers</p>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li>Direct farmer-buyer connections</li>
+                        <li>Automated compliance docs</li>
+                        <li>AI demand forecasting</li>
+                        <li>Transparent pricing</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">💡 The Synergy</div>
+                    <p>Together, these create an ecosystem</p>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li>Impossible to replicate</li>
+                        <li>First-mover advantage</li>
+                        <li>Network effects</li>
+                        <li>Sustainable competitive moat</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">3 / 12</div>
+        </div>
+
+        <!-- Slide 4: Innovation Deep Dive -->
+        <div class="slide slide4">
+            <h2>OBANLA TRACE: How It Works</h2>
+            <p style="font-size: 1.4em; margin-bottom: 30px;">Every product tells its complete story via QR code</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">1️⃣</div>
+                    <p><strong>Farm Origin</strong></p>
+                    <p style="font-size: 0.9em;">GPS location, harvest date, farmer cooperative</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2️⃣</div>
+                    <p><strong>Processing</strong></p>
+                    <p style="font-size: 0.9em;">Facility details, processing date, quality checks</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">3️⃣</div>
+                    <p><strong>Lab Testing</strong></p>
+                    <p style="font-size: 0.9em;">Moisture, aflatoxin, purity tests verified</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">4️⃣</div>
+                    <p><strong>Blockchain</strong></p>
+                    <p style="font-size: 0.9em;">Immutable record, customer scans, instant access</p>
+                </div>
+            </div>
+            <p style="margin-top: 50px; font-size: 1.3em;"><span class="highlight">First UK African food brand</span> with blockchain traceability</p>
+            <div class="slide-number">4 / 12</div>
+        </div>
+
+        <!-- Slide 5: Market Analysis -->
+        <div class="slide slide5">
+            <h2>Market Size & Opportunity</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">£5B+</div>
+                    <div class="stat-label">UK Ethnic Food Market</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2M+</div>
+                    <div class="stat-label">African Diaspora in UK</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">7-10%</div>
+                    <div class="stat-label">Annual Market Growth</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2,000+</div>
+                    <div class="stat-label">Independent Ethnic Stores</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">African Restaurants UK</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-label">Concentrated in London</div>
+                </div>
+            </div>
+            <p style="margin-top: 50px; font-size: 1.4em; text-align: center;">
+                <span class="highlight">Massive opportunity</span> in underserved, fast-growing market
+            </p>
+            <div class="slide-number">5 / 12</div>
+        </div>
+
+        <!-- Slide 6: Competitive Advantage -->
+        <div class="slide slide6">
+            <h2>Why We'll Win</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-title">🥇 First Mover</div>
+                    <p>No UK African food brand has blockchain traceability or smart packaging</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">🛡️ Defensible</div>
+                    <p>£100K+ and 2-3 years to replicate all three innovations</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">💎 Premium Positioning</div>
+                    <p>Technology justifies 10-20% price premium over competitors</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">📈 Network Effects</div>
+                    <p>Marketplace becomes more valuable as users grow</p>
+                </div>
+            </div>
+            <h3 style="margin-top: 50px;">vs. Traditional Competitors</h3>
+            <ul>
+                <li><strong>Tropical Sun, Africa's Finest:</strong> No traceability, basic packaging, no innovation</li>
+                <li><strong>Small Importers:</strong> No brand, poor quality control, no technology</li>
+                <li><strong>Us:</strong> Technology-enabled, premium quality, verifiable transparency</li>
+            </ul>
+            <div class="slide-number">6 / 12</div>
+        </div>
+
+        <!-- Slide 7: Business Model -->
+        <div class="slide slide7">
+            <h2>Business Model & Revenue Streams</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-title">🛒 Direct Sales (40-50% margin)</div>
+                    <ul style="margin-left: 15px; font-size: 0.95em;">
+                        <li>Online store (obanlafoods.com)</li>
+                        <li>Amazon & marketplaces</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">🏪 Wholesale (25-30% margin)</div>
+                    <ul style="margin-left: 15px; font-size: 0.95em;">
+                        <li>Independent ethnic stores</li>
+                        <li>Mainstream supermarkets (Year 3+)</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">🍽️ Food Service (20-25% margin)</div>
+                    <ul style="margin-left: 15px; font-size: 0.95em;">
+                        <li>Restaurants & catering</li>
+                        <li>Recurring contracts</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">💻 Marketplace (High margin, Year 3+)</div>
+                    <ul style="margin-left: 15px; font-size: 0.95em;">
+                        <li>3-5% transaction fees</li>
+                        <li>Subscription revenue</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.3em; text-align: center;">
+                <span class="highlight">Multiple revenue streams</span> reduce risk and enable rapid growth
+            </p>
+            <div class="slide-number">7 / 12</div>
+        </div>
+
+        <!-- Slide 8: Financial Projections -->
+        <div class="slide slide8">
+            <h2>Financial Projections (5 Years)</h2>
+            <div class="financial-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Revenue</th>
+                            <th>Costs</th>
+                            <th>Net Profit</th>
+                            <th>Margin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Year 1</strong></td>
+                            <td>£70,000</td>
+                            <td>£68,000</td>
+                            <td>£2,000</td>
+                            <td>3%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Year 2</strong></td>
+                            <td>£160,000</td>
+                            <td>£123,700</td>
+                            <td>£36,300</td>
+                            <td>23%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Year 3</strong></td>
+                            <td>£320,000</td>
+                            <td>£203,500</td>
+                            <td>£116,500</td>
+                            <td>36%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Year 4</strong></td>
+                            <td>£500,000</td>
+                            <td>£313,000</td>
+                            <td>£187,000</td>
+                            <td>37%</td>
+                        </tr>
+                        <tr style="background: rgba(255, 215, 0, 0.2);">
+                            <td><strong>Year 5</strong></td>
+                            <td><strong>£720,000</strong></td>
+                            <td>£433,000</td>
+                            <td><strong>£287,000</strong></td>
+                            <td><strong>40%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="stats-grid" style="margin-top: 40px;">
+                <div class="stat-box">
+                    <div class="stat-number">£50K</div>
+                    <div class="stat-label">Start-up Investment</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">9-12 mo</div>
+                    <div class="stat-label">Break-even Timeline</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">£629K</div>
+                    <div class="stat-label">5-Year Cumulative Profit</div>
+                </div>
+            </div>
+            <div class="slide-number">8 / 12</div>
+        </div>
+
+        <!-- Slide 9: Founder & Team -->
+        <div class="slide slide9">
+            <h2>Founder: Oluwatosin Grace Omoniyi</h2>
+            <div class="team-grid">
+                        <div class="team-photo">
+                            <img src="img/WhatsApp%20Image%202025-12-12%20at%2005.16.37.jpeg" alt="Oluwatosin Grace Omoniyi" style="max-width:100%; height:auto; border-radius:12px; object-fit:cover;">
+                        </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">10+ Years African Agri-Food Experience</h3>
+                    <ul>
+                        <li><strong>2015-2024:</strong> Co-founded & operated Taracebel Nig Ltd in Nigeria</li>
+                        <li><strong>Expertise:</strong> Agricultural product development, supply chain management, quality control, farmer partnerships, food safety compliance</li>
+                        <li><strong>Education:</strong> Master's in Business Management (University of Plymouth, UK) + Bachelor's in Economics</li>
+                        <li><strong>Current Status:</strong> UK resident on graduate visa, ready to launch full-time</li>
+                    </ul>
+                    <p style="margin-top: 30px; font-size: 1.2em; color: #ffd700;">
+                        <strong>Unique Advantage:</strong> Deep understanding of both African sourcing AND UK market needs
+                    </p>
+                </div>
+            </div>
+            <div class="slide-number">9 / 12</div>
+        </div>
+
+        <!-- Slide 10: Scalability -->
+        <div class="slide slide10">
+            <h2>Scalability: UK → EU → Global</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">Year 1-2</div>
+                    <p><strong>London Launch</strong></p>
+                    <p style="font-size: 0.85em;">Prove model, establish brand, achieve profitability</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">Year 2-3</div>
+                    <p><strong>UK National</strong></p>
+                    <p style="font-size: 0.85em;">Birmingham, Manchester, Leicester. Mainstream retail entry</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">Year 4-5</div>
+                    <p><strong>EU Expansion</strong></p>
+                    <p style="font-size: 0.85em;">France, Germany, Netherlands. White label production</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">Year 5+</div>
+                    <p><strong>US Market</strong></p>
+                    <p style="font-size: 0.85em;">Largest African diaspora. Technology licensing</p>
+                </div>
+            </div>
+            <h3 style="margin-top: 50px;">Job Creation</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">2-3</div>
+                    <div class="stat-label">UK Jobs Year 1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">8-10</div>
+                    <div class="stat-label">UK Jobs Year 3</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">UK Jobs Year 5</div>
+                </div>
+            </div>
+            <div class="slide-number">10 / 12</div>
+        </div>
+
+        <!-- Slide 11: Innovator Visa Criteria -->
+        <div class="slide slide11">
+            <h2>Innovator Founder Visa Criteria</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-title">✅ INNOVATION</div>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li><strong>First</strong> UK blockchain-traced African foods</li>
+                        <li><strong>Novel</strong> smart packaging solutions</li>
+                        <li><strong>Unique</strong> B2B marketplace platform</li>
+                        <li><strong>Defensible</strong> competitive advantages</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">✅ VIABILITY</div>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li><strong>Proven</strong> market demand (£5B+ sector)</li>
+                        <li><strong>Experienced</strong> founder (10+ years)</li>
+                        <li><strong>Conservative</strong> financial projections</li>
+                        <li><strong>Multiple</strong> revenue streams</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">✅ SCALABILITY</div>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li><strong>Technology-enabled</strong> exponential growth</li>
+                        <li><strong>Geographic</strong> expansion to EU/US</li>
+                        <li><strong>Job creation</strong> (20+ by Year 5)</li>
+                        <li><strong>Platform</strong> business model</li>
+                    </ul>
+                </div>
+                <div class="feature-box" style="background: rgba(255, 215, 0, 0.2);">
+                    <div class="feature-title">🎯 IMPACT</div>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li><strong>Consumer trust</strong> through transparency</li>
+                        <li><strong>Farmer empowerment</strong> (fair prices)</li>
+                        <li><strong>Industry transformation</strong> (tech leader)</li>
+                        <li><strong>UK innovation</strong> hub establishment</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">11 / 12</div>
+        </div>
+
+        <!-- Slide 12: The Ask -->
+        <div class="slide slide12">
+            <h2>The Ask</h2>
+            <p style="font-size: 1.6em; margin-bottom: 40px;">
+                We are seeking <span class="highlight">endorsement for the Innovator Founder Visa</span>
+            </p>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-title">What We'll Deliver</div>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li>Launch within 3 months of endorsement</li>
+                        <li>First sales within 4 months</li>
+                        <li>Profitability within 12 months</li>
+                        <li>£720K revenue by Year 5</li>
+                        <li>20+ UK jobs created</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">What We Bring</div>
+                    <ul style="margin-left: 15px; font-size: 1em;">
+                        <li>£50,000 personal investment ready</li>
+                        <li>10+ years relevant experience</li>
+                        <li>Established African supplier network</li>
+                        <li>UK education & market knowledge</li>
+                        <li>Technology roadmap ready</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="font-size: 1.8em; margin-top: 60px; text-align: center; color: #ffd700;">
+                <strong>Ready to make OBANLA FOODS the UK's most innovative African food brand</strong>
+            </p>
+            <p style="font-size: 1.2em; text-align: center; margin-top: 20px;">
+                Contact: tosingrace1984@gmail.com | 07466054323
+            </p>
+            <div class="slide-number">12 / 12</div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            
+            prevBtn.disabled = n === 0;
+            nextBtn.disabled = n === slides.length - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
