@@ -362,9 +362,24 @@
                 grid-template-columns: 1fr;
             }
         }
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 200;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+        }
+        .back-btn:hover { background: rgba(0,0,0,0.8); }
     </style>
 </head>
 <body>
+    <a href="index.html" class="back-btn" aria-label="Back to home">← Back</a>
     <div class="container">
         <div class="header">
             <h1>🔗 OBANLA TRACE System Wireframes</h1>
